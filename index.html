@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tempah A&A BURGER</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        header {
+            background-color: #1abc9c;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        header h1 {
+            font-size: 36px;
+            margin: 0;
+        }
+        section {
+            padding: 40px;
+            max-width: 800px;
+            margin: auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        h2, h3 {
+            color: #2c3e50;
+        }
+        label {
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        input[type="number"], input[type="text"], select {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        .order-summary {
+            margin-top: 30px;
+            background-color: #ecf0f1;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .cta-button {
+            display: block;
+            background-color: #e67e22;
+            color: white;
+            padding: 15px;
+            font-size: 18px;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .cta-button:hover {
+            background-color: #d35400;
+        }
+        .cta-button:active {
+            background-color: #c0392b;
+        }
+        .cta-button:focus {
+            outline: none;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .notice {
+            font-size: 14px;
+            color: #e74c3c;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>🌟 TEMPAHAN A&A BURGER 🌟</h1>
+</header>
+
+<section>
+    <h2>📌 Menu Pilihan:</h2>
+    <form id="orderForm">
+        <!-- Burger Options -->
+        <div class="form-group">
+            <label for="burgerBenjo">Burger Benjo (RM3.50):</label>
+            <input type="number" id="burgerBenjo" name="burgerBenjo" min="0" value="0" onchange="calculateTotal()">
+            <h3>🌟 Add-ons untuk Burger Benjo:</h3>
+            <label><input type="checkbox" id="eggBenjo" onchange="calculateTotal()"> Telur (RM2.00)</label><br>
+            <label><input type="checkbox" id="chickenBenjo" onchange="calculateTotal()"> Ayam Biasa (RM2.00)</label><br>
+            <label><input type="checkbox" id="beefBenjo" onchange="calculateTotal()"> Daging Biasa (RM2.00)</label><br>
+            <label><input type="checkbox" id="cheeseBenjo" onchange="calculateTotal()"> Cheese Slice (RM1.00)</label>
+        </div>
+
+        <div class="form-group">
+            <label for="burgerDoubleBenjo">Burger Double Benjo (RM5.50):</label>
+            <input type="number" id="burgerDoubleBenjo" name="burgerDoubleBenjo" min="0" value="0" onchange="calculateTotal()">
+            <h3>🌟 Add-ons untuk Burger Double Benjo:</h3>
+            <label><input type="checkbox" id="eggDoubleBenjo" onchange="calculateTotal()"> Telur (RM2.00)</label><br>
+            <label><input type="checkbox" id="chickenDoubleBenjo" onchange="calculateTotal()"> Ayam Biasa (RM2.00)</label><br>
+            <label><input type="checkbox" id="beefDoubleBenjo" onchange="calculateTotal()"> Daging Biasa (RM2.00)</label><br>
+            <label><input type="checkbox" id="cheeseDoubleBenjo" onchange="calculateTotal()"> Cheese Slice (RM1.00)</label>
+        </div>
+
+        <div class="form-group">
+            <label for="burgerAyamDaging">Burger Ayam/Daging Biasa (RM4.00):</label>
+            <input type="number" id="burgerAyamDaging" name="burgerAyamDaging" min="0" value="0" onchange="calculateTotal()">
+            <h3>🌟 Add-ons untuk Burger Ayam/Daging:</h3>
+            <label><input type="checkbox" id="eggAyamDaging" onchange="calculateTotal()"> Telur (RM2.00)</label><br>
+            <label><input type="checkbox" id="chickenAyamDaging" onchange="calculateTotal()"> Ayam Biasa (RM2.00)</label><br>
+            <label><input type="checkbox" id="beefAyamDaging" onchange="calculateTotal()"> Daging Biasa (RM2.00)</label><br>
+            <label><input type="checkbox" id="cheeseAyamDaging" onchange="calculateTotal()"> Cheese Slice (RM1.00)</label>
+        </div>
+
+        <div class="form-group">
+            <label for="burgerAyamSpecial">Burger Ayam Spesial (RM5.00):</label>
+            <input type="number" id="burgerAyamSpecial" name="burgerAyamSpecial" min="0" value="0" onchange="calculateTotal()">
+            <h3>🌟 Add-ons untuk Burger Ayam Spesial:</h3>
+            <label><input type="checkbox" id="eggAyamSpecial" onchange="calculateTotal()"> Telur (RM2.00)</label><br>
+            <label><input type="checkbox" id="chickenAyamSpecial" onchange="calculateTotal()"> Ayam Biasa (RM2.00)</label><br>
+            <label><input type="checkbox" id="beefAyamSpecial" onchange="calculateTotal()"> Daging Biasa (RM2.00)</label><br>
+            <label><input type="checkbox" id="cheeseAyamSpecial" onchange="calculateTotal()"> Cheese Slice (RM1.00)</label>
+        </div>
+
+        <div class="form-group">
+            <label for="burgerDagingSpecial">Burger Daging Spesial (RM5.00):</label>
+            <input type="number" id="burgerDagingSpecial" name="burgerDagingSpecial" min="0" value="0" onchange="calculateTotal()">
+            <h3>🌟 Add-ons untuk Burger Daging Spesial:</h3>
+            <label><input type="checkbox" id="eggDagingSpecial" onchange="calculateTotal()"> Telur (RM2.00)</label><br>
+            <label><input type="checkbox" id="chickenDagingSpecial" onchange="calculateTotal()"> Ayam Biasa (RM2.00)</label><br>
+            <label><input type="checkbox" id="beefDagingSpecial" onchange="calculateTotal()"> Daging Biasa (RM2.00)</label><br>
+            <label><input type="checkbox" id="cheeseDagingSpecial" onchange="calculateTotal()"> Cheese Slice (RM1.00)</label>
+        </div>
+
+        <!-- Alamat Penghantaran -->
+        <div class="form-group">
+            <label for="location">Alamat Penghantaran:</label>
+            <input type="text" id="location" name="location" required>
+            <p class="notice">📍 Sila masukkan alamat penghantaran lengkap untuk memudahkan penghantaran. Setelah tempahan selesai, alamat akan dihantar ke WhatsApp.</p>
+        </div>
+
+        <div class="order-summary">
+            <h3>💸 Jumlah:</h3>
+            <p id="totalAmount">RM0.00</p>
+        </div>
+
+        <a href="#" class="cta-button" id="whatsappButton" onclick="sendOrder()">Tempah Sekarang di WhatsApp!</a>
+    </form>
+</section>
+
+<script>
+    const deliveryCosts = {
+        "Limbang": 8.00
+    };
+
+    // Fungsi untuk kira jumlah dan masukkan ke dalam totalAmount
+    function calculateTotal() {
+        let total = 0
